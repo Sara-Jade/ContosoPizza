@@ -1,7 +1,12 @@
+using ContosoPizza.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<ContosoPizzaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ContosoPizzaContext")));
 
 var app = builder.Build();
 
@@ -15,11 +20,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapRazorPages();
-
 app.Run();
