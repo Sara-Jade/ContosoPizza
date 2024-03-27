@@ -5,8 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+// "Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;"
 builder.Services.AddDbContext<ContosoPizzaContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ContosoPizzaContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ContosoPizza")));
 
 var app = builder.Build();
 
