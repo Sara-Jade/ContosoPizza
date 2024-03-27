@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
-namespace ContosoPizza.Mod
+namespace ContosoPizza.Models
 {
     public partial class Customer
     {
@@ -13,7 +10,6 @@ namespace ContosoPizza.Mod
             Orders = new HashSet<Order>();
         }
 
-        [Key]
         public int Id { get; set; }
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
@@ -21,7 +17,6 @@ namespace ContosoPizza.Mod
         public string? Phone { get; set; }
         public string? Email { get; set; }
 
-        [InverseProperty("Customer")]
         public virtual ICollection<Order> Orders { get; set; }
     }
 }
