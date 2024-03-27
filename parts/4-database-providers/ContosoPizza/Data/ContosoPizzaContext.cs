@@ -31,7 +31,7 @@ namespace ContosoPizza.Data
             // 
             // optionsBuilder.UseSqlServer("Connection String Here");
 
-            optionsBuilder.UseSqlite("Data Source=ContosoPizza.db");
+            optionsBuilder.UseNpgsql("User ID=postgres;Password=P@ssw0rd;Host=localhost;Port=5432;Database=ContosoPizza;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
