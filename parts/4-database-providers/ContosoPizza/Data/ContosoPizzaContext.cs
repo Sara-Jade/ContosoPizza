@@ -16,6 +16,7 @@ namespace ContosoPizza.Data
         public ContosoPizzaContext(DbContextOptions<ContosoPizzaContext> options)
             : base(options)
         {
+        
         }
 
         public virtual DbSet<Customer> Customers { get; set; } = null!;
@@ -30,7 +31,7 @@ namespace ContosoPizza.Data
             // 
             // optionsBuilder.UseSqlServer("Connection String Here");
 
-
+            optionsBuilder.UseSqlite("Data Source=ContosoPizza.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
