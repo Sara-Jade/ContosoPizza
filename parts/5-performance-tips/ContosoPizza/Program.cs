@@ -9,8 +9,9 @@ builder.Services.AddRazorPages();
 // Add the "ContosoPizza" connection string to
 // Secrets Manager (secrets.json or dotnet user-secrets set)
 // before you run the app!
-builder.Services.AddDbContext<ContosoPizzaContext>(options =>
+builder.Services.AddDbContextPool<ContosoPizzaContext>(options => // The pool is used to reduce overhead.
     options
+        .UseLazyLoadingProxies()
         .UseSqlServer(builder.Configuration.GetConnectionString("ContosoPizza")));
 
 var app = builder.Build();

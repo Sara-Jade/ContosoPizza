@@ -33,6 +33,7 @@ namespace ContosoPizza.Pages.Customers
                         .Include(c => c.Orders)
                         .ThenInclude(o => o.OrderDetails)
                         .ThenInclude(od => od.Product)
+                        .AsSplitQuery()
                         .FirstOrDefaultAsync(m => m.Id == id);
 
 

@@ -33,7 +33,9 @@ namespace ContosoPizza.Pages.Products
             }
             CustomerId = customerId;
 
-            Product = await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
+            Product = await _context.Products
+                //.FirstOrDefaultAsync(m => m.Id == id);
+                .FindAsync(id); // Look to see if we have the entity in the context before hitting the database
             
             if (Product == null)
             {
@@ -43,7 +45,8 @@ namespace ContosoPizza.Pages.Products
             if(CustomerId > 0)
             {
                 Customer = await _context.Customers
-                    .Where(c => c.Id == CustomerId)
+                    // .Where(c => c.Id == CustomerId)
+                    .FromSqlInterpolated($"SELECT * FROM Customers WHERE Id = {CustomerId}")
                     .FirstOrDefaultAsync();
             }
 

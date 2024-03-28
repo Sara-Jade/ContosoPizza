@@ -25,7 +25,8 @@ namespace ContosoPizza.Pages.Customers
         public async Task OnGetAsync()
         {
             Customer = await _context.Customers
-                                .Include(c => c.Orders)
+                                //.Include(c => c.Orders) // Can't use with lazy loading
+                                //.AsNoTracking() // Can't use with lazy loading
                                 .ToListAsync();
         }
     }
